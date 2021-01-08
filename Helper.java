@@ -6,55 +6,67 @@ public class Helper {
 	   
 	public static Scanner sc = new Scanner(System.in);
     public static Course course = null;
-    
-    
-    public static void algo2(){
-        course = new Course(3, 2, 2);
-        int key2 = sc.nextInt();
-        course.Algo2(key2);
-    }
-
-    public static void ml(){
-        course = new Course(3, 2, 2);
-        int key2 = sc.nextInt();
-        course.ML(key2);
-    }
-
-    public static void terminate(){
-		System.out.println("--- BYE BYE ---");
-		System.exit(0);
-	   }
        
 	public static void main(String[] args) throws IOException {
 
-        Map<Integer, Runnable> commands = new HashMap<>();
-		commands.put(1, () -> algo2());
-        commands.put(2, () -> ml());
-        commands.put(3, () -> terminate());
-		
 		while(true)
 		{
-            System.out.println("Welcome this is your semester assistant, now select desired course :");
-		    System.out.println("1. Algo2");
-            System.out.println("2. ML");
-            System.out.println("3. Exit");
-		    System.out.print("enter an option: ");
+            System.out.println("Slect one of the following :");
+            System.out.println("1. Creating new course");
+            System.out.println("2. Updating marks obtained");
+            System.out.println("3. Statastics of prevoious courses");
+            System.out.println("4. Exit");
+            System.out.print("enter an option: ");
+ 
+            int key1 = sc.nextInt();
 
-		    int key1 = sc.nextInt();
+            if(key1 == 4){
+                System.out.println("--- BYE BYE ---");
+		        System.exit(0);
+            }
+
+            System.out.println("Enter the course name :");
+            sc.nextLine();
+            String name = sc.nextLine();
+
+            System.out.println("Enter number of assignments :");
+            int no_of_assi = sc.nextInt();
+
+            System.out.println("Enter number of quizzes :");
+            int no_of_quiz = sc.nextInt();
+
+            course = new Course(name, no_of_assi, no_of_quiz);
 
             System.out.println("Now, slect one of the following :");
             System.out.println("1. Assignment");
             System.out.println("2. Quiz");
-            System.out.println("3. Exam");
-            System.out.println("4. Exit");
+            System.out.println("3. Midsem");
+            System.out.println("4. Endsem");
+            System.out.println("5. Exit");
             System.out.print("enter an option: ");
 
-            //int key2 = sc.nextInt();
+            int key = sc.nextInt();
 
+            if(key==1){
+                System.out.println("Enter assignment number :");
+                int assi_no = sc.nextInt();
 
-            // Run selected command
-            if (commands.containsKey(key1))
-				commands.get(key1).run();
+                System.out.println("Enter weight of assignment :");
+                int weight = sc.nextInt();
+
+                System.out.println("Enter deadline of assignment :");
+                sc.nextLine();
+                String date = sc.nextLine();
+        
+                System.out.println("Enter total marks for this assignment :");
+                int total_marks = sc.nextInt();
+
+                course.Assignment_add_values(assi_no, weight, date, total_marks);
+            }
+            if(key==5){
+                System.out.println("--- BYE BYE ---");
+		        System.exit(0);
+            }
 				
 		}//while
 	}
